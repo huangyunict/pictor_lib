@@ -1,7 +1,4 @@
 """Test module for the class PictorSize."""
-import configparser
-import json
-from pathlib import Path
 
 from src.pictor_lib.pictor_size import PictorSize
 
