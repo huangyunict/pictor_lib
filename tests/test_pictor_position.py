@@ -18,8 +18,8 @@ class TestPictorPosition:
         assert position.x == 0
         assert position.y == 0
 
-    def test_new_position_with_value(self):
-        """Test for creating a new object with defaults."""
+    def test_new_position_with_values(self):
+        """Test for creating a new object with values."""
 
         position = PictorPosition(x=67, y=42)
 
