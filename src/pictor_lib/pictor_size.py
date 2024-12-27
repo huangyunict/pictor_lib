@@ -1,3 +1,4 @@
+"""Module that defines the PictorSize class."""
 from decimal import Decimal
 
 
@@ -11,8 +12,12 @@ class PictorSize(tuple[Decimal, Decimal]):
 
     @property
     def width(self) -> Decimal:
+        """The width property."""
+
         return self[0]
 
     @property
     def height(self) -> Decimal:
+        """The height property."""
+
         return self[1]
