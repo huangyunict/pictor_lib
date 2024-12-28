@@ -140,3 +140,45 @@ class TestPictorSize:
         assert_that(new_size).is_not_same_as(old_size)
         assert_that(new_size.width).is_equal_to(800)
         assert_that(new_size.height).is_equal_to(800)
+
+    def test_add_operator(self):
+        """Test for the __add__ operator."""
+
+        size_1 = PictorSize(800, 600)
+        size_2 = PictorSize(67, 42)
+        new_size = size_1 + size_2
+
+        # Verify size.
+        assert_that(size_1).is_equal_to(PictorSize(800, 600))
+        assert_that(size_2).is_equal_to(PictorSize(67, 42))
+        assert_that(new_size).is_not_same_as(size_1)
+        assert_that(new_size).is_not_same_as(size_2)
+        assert_that(new_size.width).is_equal_to(867)
+        assert_that(new_size.height).is_equal_to(642)
+
+    def test_sub_operator(self):
+        """Test for the __sub__ operator."""
+
+        size_1 = PictorSize(800, 600)
+        size_2 = PictorSize(67, 42)
+        new_size = size_2 - size_1
+
+        # Verify size.
+        assert_that(size_1).is_equal_to(PictorSize(800, 600))
+        assert_that(size_2).is_equal_to(PictorSize(67, 42))
+        assert_that(new_size).is_not_same_as(size_1)
+        assert_that(new_size).is_not_same_as(size_2)
+        assert_that(new_size.width).is_equal_to(-733)
+        assert_that(new_size.height).is_equal_to(-558)
+
+    @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
+    def test_mul_operator(self, ratio: float):
+        """Test for the __mul__ operator."""
+
+        old_size = PictorSize(800, 600)
+        new_size = old_size * ratio
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
+        assert_that(new_size.height).is_equal_to(old_size.height * Decimal(ratio))
