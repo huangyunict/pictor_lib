@@ -1,6 +1,8 @@
 """Test module for the class PictorSize."""
 
+import pytest
 from assertpy import assert_that
+from decimal import Decimal
 
 from src.pictor_lib.pictor_size import PictorSize
 
@@ -37,17 +39,48 @@ class TestPictorSize:
         assert_that(new_size.width).is_equal_to(800)
         assert_that(new_size.height).is_equal_to(600)
 
-    def test_scale(self):
-        pass
+    @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
+    def test_scale(self, ratio: float):
+        """Test for the scale method."""
 
-    def test_scale_width(self):
-        pass
+        old_size = PictorSize(800, 600)
+        new_size = old_size.scale(ratio)
 
-    def test_scale_height(self):
-        pass
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
+        assert_that(new_size.height).is_equal_to(old_size.height * Decimal(ratio))
+
+    @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
+    def test_scale_width(self, ratio: float):
+        """Test for the scale_width method."""
+
+        old_size = PictorSize(800, 600)
+        new_size = old_size.scale_width(ratio)
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
+        assert_that(new_size.height).is_equal_to(old_size.height)
+
+    @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
+    def test_scale_height(self, ratio: float):
+        """Test for the scale_height method."""
+
+        old_size = PictorSize(800, 600)
+        new_size = old_size.scale_height(ratio)
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(old_size.width)
+        assert_that(new_size.height).is_equal_to(old_size.height * Decimal(ratio))
 
     def test_shrink_to_square(self):
+        """Test for the shrink_to_square method."""
+
         pass
 
     def test_expand_to_square(self):
+        """Test for the expand_to_square method."""
+
         pass
