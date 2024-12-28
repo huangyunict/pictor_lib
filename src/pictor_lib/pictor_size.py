@@ -7,9 +7,7 @@ from src.pictor_lib.pictor_type import DecimalUnion
 class PictorSize(tuple[Decimal, Decimal]):
     """Wrap 2d size (width x height)."""
 
-    def __new__(cls,
-                width: DecimalUnion = 0,
-                height: DecimalUnion = 0):
+    def __new__(cls, width: DecimalUnion = 0, height: DecimalUnion = 0):
         return tuple.__new__(PictorSize, (Decimal(width), Decimal(height)))
 
     @property
@@ -60,3 +58,18 @@ class PictorSize(tuple[Decimal, Decimal]):
 
         size = max(self[0], self[1])
         return PictorSize(size, size)
+
+    def __add__(self, other: 'PictorSize') -> 'PictorSize':
+        """Add another size object to the current size object, and return the new instance."""
+
+        return PictorSize(self[0] + other[0], self[1] + other[1])
+
+    def __sub__(self, other: 'PictorSize') -> 'PictorSize':
+        """Subtract another size object from the current size object, and return the new instance."""
+
+        return PictorSize(self[0] - other[0], self[1] - other[1])
+
+    def __mul__(self, ratio: DecimalUnion) -> 'PictorSize':
+        """Multiply the width and height with the given ratio, and return the new instance."""
+
+        return self.scale(ratio)
