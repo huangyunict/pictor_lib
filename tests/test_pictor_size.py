@@ -1,8 +1,8 @@
 """Test module for the class PictorSize."""
 
+from decimal import Decimal
 import pytest
 from assertpy import assert_that
-from decimal import Decimal
 
 from src.pictor_lib.pictor_size import PictorSize
 
@@ -48,8 +48,10 @@ class TestPictorSize:
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
-        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
-        assert_that(new_size.height).is_equal_to(old_size.height * Decimal(ratio))
+        assert_that(new_size.width).is_equal_to(old_size.width *
+                                                Decimal(ratio))
+        assert_that(new_size.height).is_equal_to(old_size.height *
+                                                 Decimal(ratio))
 
     @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
     def test_scale_width(self, ratio: float):
@@ -60,7 +62,8 @@ class TestPictorSize:
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
-        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
+        assert_that(new_size.width).is_equal_to(old_size.width *
+                                                Decimal(ratio))
         assert_that(new_size.height).is_equal_to(old_size.height)
 
     @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
@@ -73,7 +76,8 @@ class TestPictorSize:
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
         assert_that(new_size.width).is_equal_to(old_size.width)
-        assert_that(new_size.height).is_equal_to(old_size.height * Decimal(ratio))
+        assert_that(new_size.height).is_equal_to(old_size.height *
+                                                 Decimal(ratio))
 
     def test_shrink_to_square_when_for_longer_width(self):
         """Test for the shrink_to_square method for longer width."""
@@ -180,5 +184,7 @@ class TestPictorSize:
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
-        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
-        assert_that(new_size.height).is_equal_to(old_size.height * Decimal(ratio))
+        assert_that(new_size.width).is_equal_to(old_size.width *
+                                                Decimal(ratio))
+        assert_that(new_size.height).is_equal_to(old_size.height *
+                                                 Decimal(ratio))
