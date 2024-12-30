@@ -37,3 +37,18 @@ class PictorPosition(tuple[Decimal, Decimal]):
         """Set the y property and return a new instance."""
 
         return PictorPosition(self[0], y)
+
+    def move(self, offset: 'PictorSize') -> 'PictorPosition':
+        """Return a new instance by moving the given offset."""
+
+        return PictorPosition(self.x + offset.width, self.y + offset.height)
+
+    def move_x(self, offset: DecimalUnion) -> 'PictorPosition':
+        """Return a new instance by moving the x field of given offset."""
+
+        return PictorPosition(self.x + offset, self.y)
+
+    def move_y(self, offset: DecimalUnion) -> 'PictorPosition':
+        """Return a new instance by moving the y field of given offset."""
+
+        return PictorPosition(self.x, self.y + offset)
