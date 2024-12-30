@@ -12,10 +12,10 @@ from src.pictor_lib.pictor_size import PictorSize
 class TestPictorPoint:
     """Tests for the class PictorPoint."""
 
-    def test_new_with_defaults(self):
-        """Test for creating a new object with defaults."""
+    def test_origin(self):
+        """Test for origin point."""
 
-        point = PictorPoint()
+        point = PictorPoint.ORIGIN
 
         # Verify point.
         assert_that(point.x).is_equal_to(0)

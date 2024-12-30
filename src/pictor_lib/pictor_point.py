@@ -8,7 +8,7 @@ from src.pictor_lib.pictor_size import PictorSize
 class PictorPoint(tuple[Decimal, Decimal]):
     """Wrap 2d point (x, y)."""
 
-    def __new__(cls, x: DecimalUnion = 0, y: DecimalUnion = 0):
+    def __new__(cls, x: DecimalUnion, y: DecimalUnion):
         return tuple.__new__(PictorPoint, (Decimal(x), Decimal(y)))
 
     @property
@@ -53,3 +53,6 @@ class PictorPoint(tuple[Decimal, Decimal]):
         """Return a new instance by moving the y field of given offset."""
 
         return PictorPoint(self.x, self.y + offset)
+
+
+PictorPoint.ORIGIN = PictorPoint(0, 0)
