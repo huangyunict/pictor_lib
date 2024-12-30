@@ -7,6 +7,7 @@ from assertpy import assert_that
 from src.pictor_lib.pictor_size import PictorSize
 
 
+# pylint: disable=too-many-public-methods
 class TestPictorSize:
     """Tests for the class PictorSize."""
 

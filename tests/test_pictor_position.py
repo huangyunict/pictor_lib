@@ -6,6 +6,7 @@ from assertpy import assert_that
 from src.pictor_lib.pictor_position import PictorPosition
 
 
+# pylint: disable=too-many-public-methods
 class TestPictorPosition:
     """Tests for the class PictorPosition."""
 
