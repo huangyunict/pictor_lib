@@ -2,6 +2,7 @@
 from decimal import Decimal
 
 from src.pictor_lib.pictor_type import DecimalUnion
+from src.pictor_lib.pictor_size import PictorSize
 
 
 class PictorPosition(tuple[Decimal, Decimal]):
@@ -38,7 +39,7 @@ class PictorPosition(tuple[Decimal, Decimal]):
 
         return PictorPosition(self[0], y)
 
-    def move(self, offset: 'PictorSize') -> 'PictorPosition':
+    def move(self, offset: PictorSize) -> 'PictorPosition':
         """Return a new instance by moving the given offset."""
 
         return PictorPosition(self.x + offset.width, self.y + offset.height)
