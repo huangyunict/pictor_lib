@@ -60,8 +60,7 @@ class TestPictorSize:
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
-        assert_that(new_size.width).is_equal_to(old_size.width *
-                                                Decimal(ratio))
+        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
         assert_that(new_size.height).is_equal_to(old_size.height *
                                                  Decimal(ratio))
 
@@ -74,8 +73,7 @@ class TestPictorSize:
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
-        assert_that(new_size.width).is_equal_to(old_size.width *
-                                                Decimal(ratio))
+        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
         assert_that(new_size.height).is_equal_to(old_size.height)
 
     @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
@@ -262,7 +260,6 @@ class TestPictorSize:
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
-        assert_that(new_size.width).is_equal_to(old_size.width *
-                                                Decimal(ratio))
+        assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
         assert_that(new_size.height).is_equal_to(old_size.height *
                                                  Decimal(ratio))
