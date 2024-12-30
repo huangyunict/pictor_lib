@@ -91,7 +91,7 @@ class TestPictorSize:
         assert_that(new_size.height).is_equal_to(old_size.height *
                                                  Decimal(ratio))
 
-    def test_shrink_to_square_when_for_longer_width(self):
+    def test_shrink_to_square_for_longer_width(self):
         """Test for the shrink_to_square method for longer width."""
 
         old_size = PictorSize(800, 600)
@@ -102,7 +102,7 @@ class TestPictorSize:
         assert_that(new_size.width).is_equal_to(600)
         assert_that(new_size.height).is_equal_to(600)
 
-    def test_shrink_to_square_when_for_longer_height(self):
+    def test_shrink_to_square_for_longer_height(self):
         """Test for the shrink_to_square method for longer height."""
 
         old_size = PictorSize(600, 800)
@@ -113,7 +113,7 @@ class TestPictorSize:
         assert_that(new_size.width).is_equal_to(600)
         assert_that(new_size.height).is_equal_to(600)
 
-    def test_shrink_to_square_when_for_square(self):
+    def test_shrink_to_square_for_square(self):
         """Test for the shrink_to_square method for equal width and height."""
 
         old_size = PictorSize(600, 600)
@@ -124,7 +124,7 @@ class TestPictorSize:
         assert_that(new_size.width).is_equal_to(600)
         assert_that(new_size.height).is_equal_to(600)
 
-    def test_expand_to_square_when_for_longer_width(self):
+    def test_expand_to_square_for_longer_width(self):
         """Test for the expand_to_square method for longer width."""
 
         old_size = PictorSize(800, 600)
@@ -135,7 +135,7 @@ class TestPictorSize:
         assert_that(new_size.width).is_equal_to(800)
         assert_that(new_size.height).is_equal_to(800)
 
-    def test_expand_to_square_when_for_longer_height(self):
+    def test_expand_to_square_for_longer_height(self):
         """Test for the expand_to_square method for longer height."""
 
         old_size = PictorSize(600, 800)
@@ -146,11 +146,77 @@ class TestPictorSize:
         assert_that(new_size.width).is_equal_to(800)
         assert_that(new_size.height).is_equal_to(800)
 
-    def test_expand_to_square_when_for_square(self):
+    def test_expand_to_square_for_square(self):
         """Test for the expand_to_square method for equal width and height."""
 
         old_size = PictorSize(800, 800)
         new_size = old_size.expand_to_square()
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(800)
+        assert_that(new_size.height).is_equal_to(800)
+
+    def test_square_to_width_for_longer_width(self):
+        """Test for the square_to_width method for longer width."""
+
+        old_size = PictorSize(800, 600)
+        new_size = old_size.square_to_width()
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(800)
+        assert_that(new_size.height).is_equal_to(800)
+
+    def test_square_to_width_for_longer_height(self):
+        """Test for the square_to_width method for longer height."""
+
+        old_size = PictorSize(600, 800)
+        new_size = old_size.square_to_width()
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(600)
+        assert_that(new_size.height).is_equal_to(600)
+
+    def test_square_to_width_for_square(self):
+        """Test for the square_to_width method for equal width and height."""
+
+        old_size = PictorSize(800, 800)
+        new_size = old_size.square_to_width()
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(800)
+        assert_that(new_size.height).is_equal_to(800)
+
+    def test_square_to_height_for_longer_width(self):
+        """Test for the square_to_height method for longer width."""
+
+        old_size = PictorSize(800, 600)
+        new_size = old_size.square_to_height()
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(600)
+        assert_that(new_size.height).is_equal_to(600)
+
+    def test_square_to_height_for_longer_height(self):
+        """Test for the square_to_height method for longer height."""
+
+        old_size = PictorSize(600, 800)
+        new_size = old_size.square_to_height()
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(800)
+        assert_that(new_size.height).is_equal_to(800)
+
+    def test_square_to_height_for_square(self):
+        """Test for the square_to_height method for equal width and height."""
+
+        old_size = PictorSize(800, 800)
+        new_size = old_size.square_to_height()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)

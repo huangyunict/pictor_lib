@@ -54,16 +54,26 @@ class PictorSize(tuple[Decimal, Decimal]):
         return PictorSize(self[0], self[1] * Decimal(ratio))
 
     def shrink_to_square(self) -> 'PictorSize':
-        """Return a new size instance by shrinking the longer side to the shorter side."""
+        """Return a new square-size instance by shrinking the longer side to the shorter side."""
 
         size = min(self[0], self[1])
         return PictorSize(size, size)
 
     def expand_to_square(self) -> 'PictorSize':
-        """Return a new size instance by expanding the shorter side to the longer side."""
+        """Return a new square-size instance by expanding the shorter side to the longer side."""
 
         size = max(self[0], self[1])
         return PictorSize(size, size)
+
+    def square_to_width(self) -> 'PictorSize':
+        """Return a new square-size instance by setting the height to width."""
+
+        return PictorSize(self[0], self[0])
+
+    def square_to_height(self) -> 'PictorSize':
+        """Return a new square-size instance by setting the width to height."""
+
+        return PictorSize(self[1], self[1])
 
     def __add__(self, other: 'PictorSize') -> 'PictorSize':
         """Return a new size instance by adding another size object to the current object."""
