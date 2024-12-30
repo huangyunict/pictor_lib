@@ -18,6 +18,7 @@ class TestPictorSize:
         # Verify size.
         assert_that(size.width).is_equal_to(0)
         assert_that(size.height).is_equal_to(0)
+        assert_that(size.raw_tuple).is_equal_to((0, 0))
 
     def test_new_with_values(self):
         """Test for creating a new object with values."""
@@ -27,6 +28,17 @@ class TestPictorSize:
         # Verify size.
         assert_that(size.width).is_equal_to(800)
         assert_that(size.height).is_equal_to(600)
+        assert_that(size.raw_tuple).is_equal_to((800, 600))
+
+    def test_new_with_decimal_values(self):
+        """Test for creating a new object with decimal values."""
+
+        size = PictorSize(width=Decimal(3.14159), height=Decimal(2.71828))
+
+        # Verify size.
+        assert_that(size.width).is_equal_to(Decimal(3.14159))
+        assert_that(size.height).is_equal_to(Decimal(2.71828))
+        assert_that(size.raw_tuple).is_equal_to((3, 3))
 
     def test_setters(self):
         """Test for creating a new object with values."""

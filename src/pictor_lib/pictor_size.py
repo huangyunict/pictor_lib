@@ -22,6 +22,12 @@ class PictorSize(tuple[Decimal, Decimal]):
 
         return self[1]
 
+    @property
+    def raw_tuple(self) -> tuple[int, int]:
+        """Convert to rounded int tuple which can be used in raw Pillow APIs."""
+
+        return round(self[0]), round(self[1])
+
     def set_width(self, width: DecimalUnion) -> 'PictorSize':
         """Set the width property and return a new instance."""
 
