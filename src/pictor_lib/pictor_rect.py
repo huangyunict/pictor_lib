@@ -100,4 +100,6 @@ class PictorRect:
         return self._size
 
     def __repr__(self) -> str:
-        return f'{self.size.width:0.2f}x{self.size.height:0.2f}+{self.top_left.x:0.2f}+{self.top_right.y:0.2f}'
+        size_str = f'{self.size.width:0.2f}x{self.size.height:0.2f}'
+        point_str = f'+{self.top_left.x:0.2f}+{self.top_right.y:0.2f}'
+        return f'{size_str}{point_str}'

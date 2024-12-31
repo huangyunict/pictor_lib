@@ -6,6 +6,7 @@ from src.pictor_lib.pictor_point import PictorPoint
 from src.pictor_lib.pictor_rect import PictorRect
 from src.pictor_lib.pictor_size import PictorSize
 
+
 # pylint: disable=too-many-public-methods
 class TestPictorRect:
     """Tests for the class PictorRect."""
@@ -30,3 +31,12 @@ class TestPictorRect:
         assert_that(rect.bottom_center).is_equal_to(PictorPoint(70.5, 47))
         assert_that(rect.bottom_right).is_equal_to(PictorPoint(74, 47))
         assert_that(rect.size).is_equal_to(PictorSize(7, 5))
+
+    def test_to_string(self):
+        """Test for converting to string."""
+
+        rect = PictorRect(point=PictorPoint(67, 42), size=PictorSize(7, 5))
+
+        # Verify rect.
+        assert_that(str(rect)).is_equal_to('7.00x5.00+67.00+42.00')
+        assert_that(repr(rect)).is_equal_to('7.00x5.00+67.00+42.00')
