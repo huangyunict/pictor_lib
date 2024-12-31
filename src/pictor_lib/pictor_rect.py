@@ -32,7 +32,7 @@ class PictorRect:
 
     @property
     def right(self) -> Decimal:
-        """The x coordinate of right boundary ."""
+        """The x coordinate of right boundary."""
 
         return self._point.x + self._size.width
 
