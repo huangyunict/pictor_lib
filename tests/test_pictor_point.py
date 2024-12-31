@@ -53,8 +53,9 @@ class TestPictorPoint:
         assert_that(new_point.x).is_equal_to(800)
         assert_that(new_point.y).is_equal_to(600)
 
-    @pytest.mark.parametrize("t", [(0, 0), (67, 31), (67, -31), (-67, 31), (-67, -31)])
-    def test_move(self, t: tuple[int,int]):
+    @pytest.mark.parametrize("t", [(0, 0), (67, 31), (67, -31), (-67, 31),
+                                   (-67, -31)])
+    def test_move(self, t: tuple[int, int]):
         """Test for the move method."""
 
         offset = PictorSize(t[0], t[1])
