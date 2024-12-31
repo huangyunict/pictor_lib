@@ -14,65 +14,90 @@ class PictorRect:
 
     @property
     def top(self) -> Decimal:
+        """The y coordinate of top boundary."""
+
         return self._point.y
 
     @property
     def bottom(self) -> Decimal:
+        """The y coordinate of bottom boundary."""
+
         return self._point.y + self._size.height
 
     @property
     def left(self) -> Decimal:
+        """The x coordinate of left boundary."""
+
         return self._point.x
 
     @property
     def right(self) -> Decimal:
+        """The x coordinate of right boundary ."""
+
         return self._point.x + self._size.width
 
     @property
     def top_left(self) -> PictorPoint:
+        """The top left point."""
+
         return self._point
 
     @property
     def top_center(self) -> PictorPoint:
+        """The top center point."""
+
         return self._point.move_x(self._size.width / 2)
 
     @property
     def top_right(self) -> PictorPoint:
+        """The top right point."""
+
         return self._point.move_x(self._size.width)
 
     @property
     def left_center(self) -> PictorPoint:
+        """The left right point."""
+
         return self._point.move_y(self._size.height / 2)
 
     @property
     def center(self) -> PictorPoint:
+        """The center point."""
+
         return self._point.move_x(self._size.width / 2).move_y(
             self._size.height / 2)
 
     @property
     def right_center(self) -> PictorPoint:
+        """The right center point."""
+
         return self._point.move_x(self._size.width).move_y(self._size.height /
                                                            2)
 
     @property
     def bottom_left(self) -> PictorPoint:
+        """The bottom left point."""
+
         return self._point.move_y(self._size.height)
 
     @property
     def bottom_center(self) -> PictorPoint:
+        """The bottom center point."""
+
         return self._point.move_x(self._size.width / 2).move_y(
             self._size.height)
 
     @property
     def bottom_right(self) -> PictorPoint:
+        """The bottom right point."""
+
         return self._point.move_x(self._size.width).move_y(self._size.height)
 
     @property
     def size(self) -> PictorSize:
+        """The size point."""
+
         return self._size
 
     def __repr__(self) -> str:
-        return '{:0.2f}x{:0.2f}+{:0.2f}+{:0.2f}'.format(self.size.width,
-                                                        self.size.height,
-                                                        self.top_left.x,
-                                                        self.top_right.y)
+        return f'{self.size.width:0.2f}x{self.size.height:0.2f}+{self.top_left.x:0.2f}+{self.top_right.y:0.2f}'
