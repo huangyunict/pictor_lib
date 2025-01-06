@@ -1,11 +1,11 @@
-"""Module that defines the PictorRect class."""
+"""Module that defines the PictorBox class."""
 from decimal import Decimal
 
 from src.pictor_lib.pictor_point import PictorPoint
 from src.pictor_lib.pictor_size import PictorSize
 
 
-class PictorRect:
+class PictorBox:
     """Wrap a rectangle as the top-left point and the non-negative size."""
 
     def __init__(self, point: PictorPoint, size: PictorSize):
