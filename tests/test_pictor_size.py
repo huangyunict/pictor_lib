@@ -222,6 +222,17 @@ class TestPictorSize:
         assert_that(new_size.width).is_equal_to(800)
         assert_that(new_size.height).is_equal_to(800)
 
+    def test_transpose(self):
+        """Test for the transpose method."""
+
+        old_size = PictorSize(800, 600)
+        new_size = old_size.transpose()
+
+        # Verify size.
+        assert_that(new_size).is_not_same_as(old_size)
+        assert_that(new_size.width).is_equal_to(600)
+        assert_that(new_size.height).is_equal_to(800)
+
     def test_add_operator(self):
         """Test for the __add__ operator."""
 

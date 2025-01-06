@@ -75,6 +75,11 @@ class PictorSize(tuple[Decimal, Decimal]):
 
         return PictorSize(self[1], self[1])
 
+    def transpose(self) -> 'PictorSize':
+        """Return a new size instance by swapping the width and height."""
+
+        return PictorSize(self[1], self[0])
+
     def __add__(self, other: 'PictorSize') -> 'PictorSize':
         """Return a new size instance by adding another size object to the current object."""
 
