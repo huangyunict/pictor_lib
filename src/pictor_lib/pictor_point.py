@@ -15,7 +15,7 @@ class PictorPoint:
 
     def __init__(self, x: DecimalUnion = 0, y: DecimalUnion = 0):
         self._x = x
-        self._y= y
+        self._y = y
 
     @property
     def x(self) -> Decimal:

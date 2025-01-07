@@ -71,8 +71,8 @@ class PictorBox:
     def right_center(self) -> PictorPoint:
         """The right center point."""
 
-        return self._point.copy().move_x(self._size.width).move_y(self._size.height /
-                                                           2)
+        return self._point.copy().move_x(self._size.width).move_y(
+            self._size.height / 2)
 
     @property
     def bottom_left(self) -> PictorPoint:
@@ -91,7 +91,8 @@ class PictorBox:
     def bottom_right(self) -> PictorPoint:
         """The bottom right point."""
 
-        return self._point.copy().move_x(self._size.width).move_y(self._size.height)
+        return self._point.copy().move_x(self._size.width).move_y(
+            self._size.height)
 
     @property
     def size(self) -> PictorSize:
