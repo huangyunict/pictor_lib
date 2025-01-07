@@ -42,12 +42,14 @@ class TestPictorSize:
         assert_that(size.raw_tuple).is_equal_to((3, 3))
 
     def test_setters(self):
-        """Test for creating a new object with values."""
+        """Test property setters."""
 
         old_size = PictorSize(width=67, height=42)
-        new_size = old_size.set_width(800).set_height(600)
+        new_size = old_size.copy().set_width(800).set_height(600)
 
         # Verify size.
+        assert_that(old_size.width).is_equal_to(67)
+        assert_that(old_size.height).is_equal_to(42)
         assert_that(new_size).is_not_same_as(old_size)
         assert_that(new_size.width).is_equal_to(800)
         assert_that(new_size.height).is_equal_to(600)
@@ -57,20 +59,19 @@ class TestPictorSize:
         """Test for the scale method."""
 
         old_size = PictorSize(800, 600)
-        new_size = old_size.scale(ratio)
+        new_size = old_size.copy().scale(ratio)
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
         assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
-        assert_that(new_size.height).is_equal_to(old_size.height *
-                                                 Decimal(ratio))
+        assert_that(new_size.height).is_equal_to(old_size.height * Decimal(ratio))
 
     @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
     def test_scale_width(self, ratio: float):
         """Test for the scale_width method."""
 
         old_size = PictorSize(800, 600)
-        new_size = old_size.scale_width(ratio)
+        new_size = old_size.copy().scale_width(ratio)
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -82,7 +83,7 @@ class TestPictorSize:
         """Test for the scale_height method."""
 
         old_size = PictorSize(800, 600)
-        new_size = old_size.scale_height(ratio)
+        new_size = old_size.copy().scale_height(ratio)
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -94,7 +95,7 @@ class TestPictorSize:
         """Test for the shrink_to_square method for longer width."""
 
         old_size = PictorSize(800, 600)
-        new_size = old_size.shrink_to_square()
+        new_size = old_size.copy().shrink_to_square()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -105,7 +106,7 @@ class TestPictorSize:
         """Test for the shrink_to_square method for longer height."""
 
         old_size = PictorSize(600, 800)
-        new_size = old_size.shrink_to_square()
+        new_size = old_size.copy().shrink_to_square()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -116,7 +117,7 @@ class TestPictorSize:
         """Test for the shrink_to_square method for equal width and height."""
 
         old_size = PictorSize(600, 600)
-        new_size = old_size.shrink_to_square()
+        new_size = old_size.copy().shrink_to_square()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -127,7 +128,7 @@ class TestPictorSize:
         """Test for the expand_to_square method for longer width."""
 
         old_size = PictorSize(800, 600)
-        new_size = old_size.expand_to_square()
+        new_size = old_size.copy().expand_to_square()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -138,7 +139,7 @@ class TestPictorSize:
         """Test for the expand_to_square method for longer height."""
 
         old_size = PictorSize(600, 800)
-        new_size = old_size.expand_to_square()
+        new_size = old_size.copy().expand_to_square()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -149,7 +150,7 @@ class TestPictorSize:
         """Test for the expand_to_square method for equal width and height."""
 
         old_size = PictorSize(800, 800)
-        new_size = old_size.expand_to_square()
+        new_size = old_size.copy().expand_to_square()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -160,7 +161,7 @@ class TestPictorSize:
         """Test for the square_to_width method for longer width."""
 
         old_size = PictorSize(800, 600)
-        new_size = old_size.square_to_width()
+        new_size = old_size.copy().square_to_width()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -171,7 +172,7 @@ class TestPictorSize:
         """Test for the square_to_width method for longer height."""
 
         old_size = PictorSize(600, 800)
-        new_size = old_size.square_to_width()
+        new_size = old_size.copy().square_to_width()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -182,7 +183,7 @@ class TestPictorSize:
         """Test for the square_to_width method for equal width and height."""
 
         old_size = PictorSize(800, 800)
-        new_size = old_size.square_to_width()
+        new_size = old_size.copy().square_to_width()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -193,7 +194,7 @@ class TestPictorSize:
         """Test for the square_to_height method for longer width."""
 
         old_size = PictorSize(800, 600)
-        new_size = old_size.square_to_height()
+        new_size = old_size.copy().square_to_height()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -204,7 +205,7 @@ class TestPictorSize:
         """Test for the square_to_height method for longer height."""
 
         old_size = PictorSize(600, 800)
-        new_size = old_size.square_to_height()
+        new_size = old_size.copy().square_to_height()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -215,7 +216,7 @@ class TestPictorSize:
         """Test for the square_to_height method for equal width and height."""
 
         old_size = PictorSize(800, 800)
-        new_size = old_size.square_to_height()
+        new_size = old_size.copy().square_to_height()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -226,7 +227,7 @@ class TestPictorSize:
         """Test for the transpose method."""
 
         old_size = PictorSize(800, 600)
-        new_size = old_size.transpose()
+        new_size = old_size.copy().transpose()
 
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
@@ -273,5 +274,4 @@ class TestPictorSize:
         # Verify size.
         assert_that(new_size).is_not_same_as(old_size)
         assert_that(new_size.width).is_equal_to(old_size.width * Decimal(ratio))
-        assert_that(new_size.height).is_equal_to(old_size.height *
-                                                 Decimal(ratio))
+        assert_that(new_size.height).is_equal_to(old_size.height * Decimal(ratio))

@@ -1,96 +1,116 @@
 """Module that defines the PictorSize class."""
 from decimal import Decimal
 
+from dataclasses import dataclass
 from src.pictor_lib.pictor_type import DecimalUnion
 
 
-class PictorSize(tuple[Decimal, Decimal]):
+@dataclass
+class PictorSize:
     """Wrap 2d size (width x height)."""
 
-    def __new__(cls, width: DecimalUnion = 0, height: DecimalUnion = 0):
-        return tuple.__new__(PictorSize, (Decimal(width), Decimal(height)))
+    _width: Decimal
+    _height: Decimal
+
+    def __init__(self, width: DecimalUnion = 0, height: DecimalUnion = 0):
+        self._width = width
+        self._height = height
 
     @property
     def width(self) -> Decimal:
         """The width property."""
 
-        return self[0]
+        return self._width
 
     @property
     def height(self) -> Decimal:
         """The height property."""
 
-        return self[1]
+        return self._height
 
     @property
     def raw_tuple(self) -> tuple[int, int]:
         """Convert to rounded int tuple which can be used in raw Pillow APIs."""
 
-        return round(self[0]), round(self[1])
+        return round(self.width), round(self.height)
+
+    def copy(self) -> 'PictorSize':
+        """Create a new size instance by copying all fields."""
+
+        return PictorSize(self._width, self._height)
 
     def set_width(self, width: DecimalUnion) -> 'PictorSize':
-        """Set the width property and return a new instance."""
+        """Update the width property."""
 
-        return PictorSize(width, self[1])
+        self._width = width
+        return self
 
     def set_height(self, height: DecimalUnion) -> 'PictorSize':
-        """Set the height property and return a new instance."""
+        """Set the height property."""
 
-        return PictorSize(self[0], height)
+        self._height = height
+        return self
 
     def scale(self, ratio: DecimalUnion) -> 'PictorSize':
-        """Return a new size instance by scaling the width and height by given ratio."""
+        """Scale the width and height by given ratio."""
 
-        return PictorSize(self[0] * Decimal(ratio), self[1] * Decimal(ratio))
+        self._width *= Decimal(ratio)
+        self._height *= Decimal(ratio)
+        return self
 
     def scale_width(self, ratio: DecimalUnion) -> 'PictorSize':
-        """Return a new size instance by scaling the width by given ratio."""
+        """Scale the width by given ratio."""
 
-        return PictorSize(self[0] * Decimal(ratio), self[1])
+        self._width *= Decimal(ratio)
+        return self
 
     def scale_height(self, ratio: DecimalUnion) -> 'PictorSize':
-        """Return a new size instance by scaling the height by given ratio."""
+        """Scale the height by given ratio."""
 
-        return PictorSize(self[0], self[1] * Decimal(ratio))
+        self._height *= Decimal(ratio)
+        return self
 
     def shrink_to_square(self) -> 'PictorSize':
-        """Return a new square-size instance by shrinking the longer side to the shorter side."""
+        """Shrink the longer side to the shorter side to make a square size."""
 
-        size = min(self[0], self[1])
-        return PictorSize(size, size)
+        size = min(self.width, self.height)
+        return self.set_width(size).set_height(size)
 
     def expand_to_square(self) -> 'PictorSize':
-        """Return a new square-size instance by expanding the shorter side to the longer side."""
+        """Expand the shorter side to the longer side to make a square size."""
 
-        size = max(self[0], self[1])
-        return PictorSize(size, size)
+        size = max(self.width, self.height)
+        return self.set_width(size).set_height(size)
 
     def square_to_width(self) -> 'PictorSize':
-        """Return a new square-size instance by setting the height to width."""
+        """Make self as square size by setting the height to width."""
 
-        return PictorSize(self[0], self[0])
+        self._height = self._width
+        return self
 
     def square_to_height(self) -> 'PictorSize':
-        """Return a new square-size instance by setting the width to height."""
+        """Make self as square size by setting the width to height."""
 
-        return PictorSize(self[1], self[1])
+        self._width = self._height
+        return self
 
     def transpose(self) -> 'PictorSize':
-        """Return a new size instance by swapping the width and height."""
+        """Swap the width and height."""
 
-        return PictorSize(self[1], self[0])
+        self._width, self._height = self._height, self._width
+        return self
 
     def __add__(self, other: 'PictorSize') -> 'PictorSize':
         """Return a new size instance by adding another size object to the current object."""
 
-        return PictorSize(self[0] + other[0], self[1] + other[1])
+        return PictorSize(self.width + other.width, self.height + other.height)
 
     def __sub__(self, other: 'PictorSize') -> 'PictorSize':
         """Return a new size instance by subtracting another size object from the current object."""
 
-        return PictorSize(self[0] - other[0], self[1] - other[1])
+        return PictorSize(self.width - other.width, self.height - other.height)
 
     def __mul__(self, ratio: DecimalUnion) -> 'PictorSize':
         """Return a new size instance by scaling the width and height by given ratio."""
 
-        return self.scale(ratio)
+        return self.copy().scale(ratio)
