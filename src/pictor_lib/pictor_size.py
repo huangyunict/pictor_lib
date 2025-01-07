@@ -13,8 +13,8 @@ class PictorSize:
     _height: Decimal
 
     def __init__(self, width: DecimalUnion = 0, height: DecimalUnion = 0):
-        self._width = width
-        self._height = height
+        self._width = Decimal(width)
+        self._height = Decimal(height)
 
     @property
     def width(self) -> Decimal:
