@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from src.pictor_lib.pictor_type import DecimalUnion
 
 
-@dataclass
+@dataclass(kw_only=True)
 class PictorSize:
     """Wrap 2d size (width x height)."""
 

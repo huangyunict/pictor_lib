@@ -46,7 +46,7 @@ class TestPictorPoint:
         """Test for creating a new object with values."""
 
         old_point = PictorPoint(x=67, y=42)
-        new_point = old_point.set_x(800).set_y(600)
+        new_point = old_point.copy().set_x(800).set_y(600)
 
         # Verify point.
         assert_that(new_point).is_not_same_as(old_point)
@@ -60,7 +60,7 @@ class TestPictorPoint:
 
         offset = PictorSize(t[0], t[1])
         old_point = PictorPoint(x=42, y=13)
-        new_point = old_point.move(offset)
+        new_point = old_point.copy().move(offset)
 
         # Verify point.
         assert_that(new_point).is_not_same_as(old_point)
@@ -72,7 +72,7 @@ class TestPictorPoint:
         """Test for the move_x method."""
 
         old_point = PictorPoint(x=13, y=42)
-        new_point = old_point.move_x(offset)
+        new_point = old_point.copy().move_x(offset)
 
         # Verify point.
         assert_that(new_point).is_not_same_as(old_point)
@@ -84,7 +84,7 @@ class TestPictorPoint:
         """Test for the move_y method."""
 
         old_point = PictorPoint(x=42, y=13)
-        new_point = old_point.move_y(offset)
+        new_point = old_point.copy().move_y(offset)
 
         # Verify point.
         assert_that(new_point).is_not_same_as(old_point)

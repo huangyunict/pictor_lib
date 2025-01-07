@@ -1,58 +1,75 @@
 """Module that defines the PictorPoint class."""
 from decimal import Decimal
 
+from dataclasses import dataclass
 from src.pictor_lib.pictor_type import DecimalUnion
 from src.pictor_lib.pictor_size import PictorSize
 
 
-class PictorPoint(tuple[Decimal, Decimal]):
+@dataclass(kw_only=True)
+class PictorPoint:
     """Wrap 2d point (x, y)."""
 
-    def __new__(cls, x: DecimalUnion, y: DecimalUnion):
-        return tuple.__new__(PictorPoint, (Decimal(x), Decimal(y)))
+    _x: Decimal
+    _y: Decimal
+
+    def __init__(self, x: DecimalUnion = 0, y: DecimalUnion = 0):
+        self._x = x
+        self._y= y
 
     @property
     def x(self) -> Decimal:
         """The x property."""
 
-        return self[0]
+        return self._x
 
     @property
     def y(self) -> Decimal:
         """The y property."""
 
-        return self[1]
+        return self._y
 
     @property
     def raw_tuple(self) -> tuple[int, int]:
         """Convert to rounded int tuple which can be used in raw Pillow APIs."""
 
-        return round(self[0]), round(self[1])
+        return round(self.x), round(self.y)
+
+    def copy(self) -> 'PictorPoint':
+        """Create a new point instance by copying all fields."""
+
+        return PictorPoint(self._x, self._y)
 
     def set_x(self, x: DecimalUnion) -> 'PictorPoint':
         """Set the x property and return a new instance."""
 
-        return PictorPoint(x, self[1])
+        self._x = x
+        return self
 
     def set_y(self, y: DecimalUnion) -> 'PictorPoint':
         """Set the y property and return a new instance."""
 
-        return PictorPoint(self[0], y)
+        self._y = y
+        return self
 
     def move(self, offset: PictorSize) -> 'PictorPoint':
-        """Return a new instance by moving the given offset."""
+        """Move self by the given offset."""
 
-        return PictorPoint(self.x + offset.width, self.y + offset.height)
+        self._x += offset.width
+        self._y += offset.height
+        return self
 
     def move_x(self, offset: DecimalUnion) -> 'PictorPoint':
-        """Return a new instance by moving the x field of given offset."""
+        """Move the x field by given offset."""
 
-        return PictorPoint(self.x + offset, self.y)
+        self._x += offset
+        return self
 
     def move_y(self, offset: DecimalUnion) -> 'PictorPoint':
         """Return a new instance by moving the y field of given offset."""
 
-        return PictorPoint(self.x, self.y + offset)
+        self._y += offset
+        return self
 
 
 PictorPoint.ORIGIN = PictorPoint(0, 0)
