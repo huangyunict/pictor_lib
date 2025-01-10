@@ -43,15 +43,26 @@ class TestPictorPoint:
         assert_that(point.raw_tuple).is_equal_to((3, 3))
 
     def test_setters(self):
-        """Test for creating a new object with values."""
+        """Test property setters."""
 
-        old_point = PictorPoint(x=67, y=42)
-        new_point = old_point.copy().set_x(800).set_y(600)
+        point = PictorPoint(x=67, y=42).set_x(800).set_y(600)
 
         # Verify point.
+        assert_that(point.x).is_equal_to(800)
+        assert_that(point.y).is_equal_to(600)
+
+    def test_copy(self):
+        """Test for the copy method."""
+
+        old_point = PictorPoint(x=67, y=42)
+        new_point = old_point.copy()
+
+        # Verify point.
+        assert_that(old_point.x).is_equal_to(67)
+        assert_that(old_point.y).is_equal_to(42)
         assert_that(new_point).is_not_same_as(old_point)
-        assert_that(new_point.x).is_equal_to(800)
-        assert_that(new_point.y).is_equal_to(600)
+        assert_that(new_point.x).is_equal_to(67)
+        assert_that(new_point.y).is_equal_to(42)
 
     @pytest.mark.parametrize("t", [(0, 0), (67, 31), (67, -31), (-67, 31),
                                    (-67, -31)])

@@ -44,15 +44,24 @@ class TestPictorSize:
     def test_setters(self):
         """Test property setters."""
 
+        size = PictorSize(width=67, height=42).set_width(800).set_height(600)
+
+        # Verify size.
+        assert_that(size.width).is_equal_to(800)
+        assert_that(size.height).is_equal_to(600)
+
+    def test_copy(self):
+        """Test for the copy method."""
+
         old_size = PictorSize(width=67, height=42)
-        new_size = old_size.copy().set_width(800).set_height(600)
+        new_size = old_size.copy()
 
         # Verify size.
         assert_that(old_size.width).is_equal_to(67)
         assert_that(old_size.height).is_equal_to(42)
         assert_that(new_size).is_not_same_as(old_size)
-        assert_that(new_size.width).is_equal_to(800)
-        assert_that(new_size.height).is_equal_to(600)
+        assert_that(new_size.width).is_equal_to(67)
+        assert_that(new_size.height).is_equal_to(42)
 
     @pytest.mark.parametrize("ratio", [0.0, 1.0, 2.0, 0.5])
     def test_scale(self, ratio: float):
