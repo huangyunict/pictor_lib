@@ -32,6 +32,20 @@ class TestPictorBox:
         assert_that(box.bottom_right).is_equal_to(PictorPoint(74, 47))
         assert_that(box.size).is_equal_to(PictorSize(7, 5))
 
+    def test_copy(self):
+        """Test for the copy method."""
+
+        old_box = PictorBox(point=PictorPoint(67, 42), size=PictorSize(7, 5))
+        new_box = old_box.copy()
+
+        # Verify box.
+        assert_that(new_box).is_not_same_as(old_box)
+        assert_that(new_box._point).is_not_same_as(old_box._point)
+        assert_that(new_box.size).is_not_same_as(old_box.size)
+        assert_that(new_box._point).is_equal_to(old_box._point)
+        assert_that(new_box.size).is_equal_to(old_box.size)
+
+
     def test_to_string(self):
         """Test for converting to string."""
 
