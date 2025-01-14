@@ -10,9 +10,6 @@ from src.pictor_lib.pictor_size import PictorSize
 class PictorPoint:
     """Wrap 2d point (x, y)."""
 
-    _x: Decimal
-    _y: Decimal
-
     def __init__(self, x: DecimalUnion = 0, y: DecimalUnion = 0):
         self._x = Decimal(x)
         self._y = Decimal(y)
