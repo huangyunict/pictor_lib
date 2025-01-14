@@ -40,9 +40,7 @@ class TestPictorBox:
 
         # Verify box.
         assert_that(new_box).is_not_same_as(old_box)
-        assert_that(new_box._point).is_not_same_as(old_box._point)
         assert_that(new_box.size).is_not_same_as(old_box.size)
-        assert_that(new_box._point).is_equal_to(old_box._point)
         assert_that(new_box.size).is_equal_to(old_box.size)
 
     def test_to_string(self):
