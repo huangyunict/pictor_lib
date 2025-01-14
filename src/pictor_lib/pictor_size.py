@@ -10,18 +10,18 @@ class PictorSize:
     """Wrap 2d size (width x height)."""
 
     def __init__(self, width: DecimalUnion = 0, height: DecimalUnion = 0):
-        self._width = Decimal(width)
-        self._height = Decimal(height)
+        self._width = self._convert(width)
+        self._height = self._convert(height)
 
     @property
     def width(self) -> Decimal:
-        """The width property."""
+        """Get the width property."""
 
         return self._width
 
     @property
     def height(self) -> Decimal:
-        """The height property."""
+        """Get the height property."""
 
         return self._height
 
@@ -32,39 +32,39 @@ class PictorSize:
         return round(self.width), round(self.height)
 
     def copy(self) -> 'PictorSize':
-        """Create a new size instance by copying all fields."""
+        """Create a new instance by copying all fields."""
 
         return PictorSize(self._width, self._height)
 
     def set_width(self, width: DecimalUnion) -> 'PictorSize':
         """Update the width property."""
 
-        self._width = width
+        self._width = self._convert(width)
         return self
 
     def set_height(self, height: DecimalUnion) -> 'PictorSize':
         """Set the height property."""
 
-        self._height = height
+        self._height = self._convert(height)
         return self
 
     def scale(self, ratio: DecimalUnion) -> 'PictorSize':
         """Scale the width and height by given ratio."""
 
-        self._width *= Decimal(ratio)
-        self._height *= Decimal(ratio)
+        self._width *= self._convert(ratio)
+        self._height *= self._convert(ratio)
         return self
 
     def scale_width(self, ratio: DecimalUnion) -> 'PictorSize':
         """Scale the width by given ratio."""
 
-        self._width *= Decimal(ratio)
+        self._width *= self._convert(ratio)
         return self
 
     def scale_height(self, ratio: DecimalUnion) -> 'PictorSize':
         """Scale the height by given ratio."""
 
-        self._height *= Decimal(ratio)
+        self._height *= self._convert(ratio)
         return self
 
     def shrink_to_square(self) -> 'PictorSize':
@@ -111,3 +111,7 @@ class PictorSize:
         """Return a new size instance by scaling the width and height by given ratio."""
 
         return self.copy().scale(ratio)
+
+    @staticmethod
+    def _convert(value: DecimalUnion) -> Decimal:
+        return Decimal(value)

@@ -5,7 +5,6 @@ import pytest
 from assertpy import assert_that
 
 from src.pictor_lib.pictor_point import PictorPoint
-from src.pictor_lib.pictor_size import PictorSize
 
 
 # pylint: disable=too-many-public-methods
@@ -45,9 +44,7 @@ class TestPictorPoint:
     def test_setters(self):
         """Test property setters."""
 
-        point = PictorPoint(x=67, y=42)
-        point.x = 800
-        point.y = 600
+        point = PictorPoint(x=67, y=42).set_x(800).set_y(600)
 
         # Verify point.
         assert_that(point.x).is_equal_to(800)

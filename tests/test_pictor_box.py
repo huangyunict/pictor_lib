@@ -45,7 +45,6 @@ class TestPictorBox:
         assert_that(new_box._point).is_equal_to(old_box._point)
         assert_that(new_box.size).is_equal_to(old_box.size)
 
-
     def test_to_string(self):
         """Test for converting to string."""
 
