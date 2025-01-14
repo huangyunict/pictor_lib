@@ -3,7 +3,6 @@ from decimal import Decimal
 
 from dataclasses import dataclass
 from src.pictor_lib.pictor_type import DecimalUnion
-from src.pictor_lib.pictor_size import PictorSize
 
 
 @dataclass(kw_only=True)
@@ -16,15 +15,27 @@ class PictorPoint:
 
     @property
     def x(self) -> Decimal:
-        """The x property."""
+        """Get the x property."""
 
         return self._x
 
+    @x.setter
+    def x(self, value):
+        """Set the x property."""
+
+        self._x = value
+
     @property
     def y(self) -> Decimal:
-        """The y property."""
+        """Get the y property."""
 
         return self._y
+
+    @y.setter
+    def y(self, value):
+        """Set the y property."""
+
+        self._y = value
 
     @property
     def raw_tuple(self) -> tuple[int, int]:
@@ -37,34 +48,10 @@ class PictorPoint:
 
         return PictorPoint(self._x, self._y)
 
-    def set_x(self, x: DecimalUnion) -> 'PictorPoint':
-        """Set the x property and return a new instance."""
-
-        self._x = x
-        return self
-
-    def set_y(self, y: DecimalUnion) -> 'PictorPoint':
-        """Set the y property and return a new instance."""
-
-        self._y = y
-        return self
-
-    def move(self, offset: PictorSize) -> 'PictorPoint':
-        """Move self by the given offset."""
-
-        self._x += offset.width
-        self._y += offset.height
-        return self
-
-    def move_x(self, dx: DecimalUnion) -> 'PictorPoint':
-        """Move the x field by given dx offset."""
+    def move(self, dx: DecimalUnion, dy: DecimalUnion) -> 'PictorPoint':
+        """Move the point by given (dx, dy) offset."""
 
         self._x += dx
-        return self
-
-    def move_y(self, dy: DecimalUnion) -> 'PictorPoint':
-        """Move the y field by given dy offset."""
-
         self._y += dy
         return self
 

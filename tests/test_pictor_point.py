@@ -45,7 +45,9 @@ class TestPictorPoint:
     def test_setters(self):
         """Test property setters."""
 
-        point = PictorPoint(x=67, y=42).set_x(800).set_y(600)
+        point = PictorPoint(x=67, y=42)
+        point.x = 800
+        point.y = 600
 
         # Verify point.
         assert_that(point.x).is_equal_to(800)
@@ -69,35 +71,10 @@ class TestPictorPoint:
     def test_move(self, t: tuple[int, int]):
         """Test for the move method."""
 
-        offset = PictorSize(t[0], t[1])
         old_point = PictorPoint(x=42, y=13)
-        new_point = old_point.copy().move(offset)
+        new_point = old_point.copy().move(dx=t[0], dy=t[1])
 
         # Verify point.
         assert_that(new_point).is_not_same_as(old_point)
         assert_that(new_point.x).is_equal_to(42 + t[0])
         assert_that(new_point.y).is_equal_to(13 + t[1])
-
-    @pytest.mark.parametrize("offset", [0, 42, -42])
-    def test_move_x(self, offset: Decimal):
-        """Test for the move_x method."""
-
-        old_point = PictorPoint(x=13, y=42)
-        new_point = old_point.copy().move_x(offset)
-
-        # Verify point.
-        assert_that(new_point).is_not_same_as(old_point)
-        assert_that(new_point.x).is_equal_to(13 + offset)
-        assert_that(new_point.y).is_equal_to(42)
-
-    @pytest.mark.parametrize("offset", [0, 42, -42])
-    def test_move_y(self, offset: Decimal):
-        """Test for the move_y method."""
-
-        old_point = PictorPoint(x=42, y=13)
-        new_point = old_point.copy().move_y(offset)
-
-        # Verify point.
-        assert_that(new_point).is_not_same_as(old_point)
-        assert_that(new_point.x).is_equal_to(42)
-        assert_that(new_point.y).is_equal_to(13 + offset)

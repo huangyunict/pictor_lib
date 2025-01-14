@@ -46,53 +46,49 @@ class PictorBox:
     def top_center(self) -> PictorPoint:
         """The top center point."""
 
-        return self._point.copy().move_x(self._size.width / 2)
+        return self._point.copy().move(self._size.width / 2, 0)
 
     @property
     def top_right(self) -> PictorPoint:
         """The top right point."""
 
-        return self._point.copy().move_x(self._size.width)
+        return self._point.copy().move(self._size.width, 0)
 
     @property
     def left_center(self) -> PictorPoint:
         """The left right point."""
 
-        return self._point.copy().move_y(self._size.height / 2)
+        return self._point.copy().move(0, self._size.height / 2)
 
     @property
     def center(self) -> PictorPoint:
         """The center point."""
 
-        return self._point.copy().move_x(self._size.width / 2).move_y(
-            self._size.height / 2)
+        return self._point.copy().move(self._size.width / 2, self._size.height / 2)
 
     @property
     def right_center(self) -> PictorPoint:
         """The right center point."""
 
-        return self._point.copy().move_x(self._size.width).move_y(
-            self._size.height / 2)
+        return self._point.copy().move(self._size.width, self._size.height / 2)
 
     @property
     def bottom_left(self) -> PictorPoint:
         """The bottom left point."""
 
-        return self._point.copy().move_y(self._size.height)
+        return self._point.copy().move(0, self._size.height)
 
     @property
     def bottom_center(self) -> PictorPoint:
         """The bottom center point."""
 
-        return self._point.copy().move_x(self._size.width / 2).move_y(
-            self._size.height)
+        return self._point.copy().move(self._size.width / 2, self._size.height)
 
     @property
     def bottom_right(self) -> PictorPoint:
         """The bottom right point."""
 
-        return self._point.copy().move_x(self._size.width).move_y(
-            self._size.height)
+        return self._point.copy().move(self._size.width, self._size.height)
 
     @property
     def size(self) -> PictorSize:
