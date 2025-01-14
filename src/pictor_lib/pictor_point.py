@@ -59,16 +59,16 @@ class PictorPoint:
         self._y += offset.height
         return self
 
-    def move_x(self, offset: DecimalUnion) -> 'PictorPoint':
-        """Move the x field by given offset."""
+    def move_x(self, dx: DecimalUnion) -> 'PictorPoint':
+        """Move the x field by given dx offset."""
 
-        self._x += offset
+        self._x += dx
         return self
 
-    def move_y(self, offset: DecimalUnion) -> 'PictorPoint':
-        """Return a new instance by moving the y field of given offset."""
+    def move_y(self, dy: DecimalUnion) -> 'PictorPoint':
+        """Move the y field by given dy offset."""
 
-        self._y += offset
+        self._y += dy
         return self
 
 
