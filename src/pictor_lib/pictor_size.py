@@ -9,9 +9,6 @@ from src.pictor_lib.pictor_type import DecimalUnion
 class PictorSize:
     """Wrap 2d size (width x height)."""
 
-    _width: Decimal
-    _height: Decimal
-
     def __init__(self, width: DecimalUnion = 0, height: DecimalUnion = 0):
         self._width = Decimal(width)
         self._height = Decimal(height)
