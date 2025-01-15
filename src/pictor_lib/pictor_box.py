@@ -9,8 +9,18 @@ class PictorBox:
     """Wrap a rectangle as the top-left point and the non-negative size."""
 
     def __init__(self, point: PictorPoint, size: PictorSize):
-        self._point = point
-        self._size = size
+        self._point = point.copy()
+        self._size = size.copy()
+
+    @staticmethod
+    def from_points(top_left: PictorPoint,
+                    bottom_right: PictorPoint) -> 'PictorBox':
+        """Create instance from the top-left and bottom-right points."""
+
+        return PictorBox(
+            top_left,
+            PictorSize(width=bottom_right.x - top_left.x,
+                       height=bottom_right.y - top_left.y))
 
     @property
     def top(self) -> Decimal:

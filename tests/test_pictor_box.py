@@ -32,6 +32,28 @@ class TestPictorBox:
         assert_that(box.bottom_right).is_equal_to(PictorPoint(74, 47))
         assert_that(box.size).is_equal_to(PictorSize(7, 5))
 
+    def test_from_points(self):
+        """Test for from_points static method."""
+
+        box = PictorBox.from_points(top_left=PictorPoint(67, 42),
+                                    bottom_right=PictorPoint(74, 47))
+
+        # Verify box.
+        assert_that(box.top).is_equal_to(42)
+        assert_that(box.bottom).is_equal_to(47)
+        assert_that(box.left).is_equal_to(67)
+        assert_that(box.right).is_equal_to(74)
+        assert_that(box.top_left).is_equal_to(PictorPoint(67, 42))
+        assert_that(box.top_center).is_equal_to(PictorPoint(70.5, 42))
+        assert_that(box.top_right).is_equal_to(PictorPoint(74, 42))
+        assert_that(box.left_center).is_equal_to(PictorPoint(67, 44.5))
+        assert_that(box.center).is_equal_to(PictorPoint(70.5, 44.5))
+        assert_that(box.right_center).is_equal_to(PictorPoint(74, 44.5))
+        assert_that(box.bottom_left).is_equal_to(PictorPoint(67, 47))
+        assert_that(box.bottom_center).is_equal_to(PictorPoint(70.5, 47))
+        assert_that(box.bottom_right).is_equal_to(PictorPoint(74, 47))
+        assert_that(box.size).is_equal_to(PictorSize(7, 5))
+
     def test_copy(self):
         """Test for the copy method."""
 
