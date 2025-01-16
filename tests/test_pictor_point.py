@@ -41,15 +41,6 @@ class TestPictorPoint:
         assert_that(point.y).is_equal_to(Decimal(2.71828))
         assert_that(point.raw_tuple).is_equal_to((3, 3))
 
-    def test_setters(self):
-        """Test property setters."""
-
-        point = PictorPoint(x=67, y=42).set_x(800).set_y(600)
-
-        # Verify point.
-        assert_that(point.x).is_equal_to(800)
-        assert_that(point.y).is_equal_to(600)
-
     def test_copy(self):
         """Test for the copy method."""
 
@@ -69,7 +60,7 @@ class TestPictorPoint:
         """Test for the move method."""
 
         old_point = PictorPoint(x=42, y=13)
-        new_point = old_point.copy().move(dx=t[0], dy=t[1])
+        new_point = old_point.move(dx=t[0], dy=t[1])
 
         # Verify point.
         assert_that(new_point).is_not_same_as(old_point)

@@ -23,16 +23,6 @@ class PictorPoint:
 
         return PictorPoint(x=self.x, y=self.y)
 
-    def set_x(self, x: DecimalUnion) -> 'PictorPoint':
-        """Return a new instance with updated x property."""
-
-        return PictorPoint(x=x, y=self.y)
-
-    def set_y(self, y: DecimalUnion) -> 'PictorPoint':
-        """Return a new instance with updated y property."""
-
-        return PictorPoint(x=self.x, y=y)
-
     def move(self, dx: DecimalUnion, dy: DecimalUnion) -> 'PictorPoint':
         """Return a new instance by moving by given (dx, dy) offset."""
 
