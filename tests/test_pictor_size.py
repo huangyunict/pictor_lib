@@ -234,4 +234,3 @@ class TestPictorSize:
         assert_that(new_size).is_not_same_as(old_size)
         assert_that(new_size.width).is_equal_to(600)
         assert_that(new_size.height).is_equal_to(800)
-

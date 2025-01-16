@@ -74,8 +74,7 @@ class PictorBox:
     def center(self) -> PictorPoint:
         """The center point."""
 
-        return self._point.move(self._size.width / 2,
-                                       self._size.height / 2)
+        return self._point.move(self._size.width / 2, self._size.height / 2)
 
     @property
     def right_center(self) -> PictorPoint:
