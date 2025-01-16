@@ -5,16 +5,16 @@ from dataclasses import dataclass
 from src.pictor_lib.pictor_type import DecimalUnion
 
 
-@dataclass(kw_only=True, frozen=True)
+@dataclass(frozen=True)
 class PictorSize:
     """Immutable data class wrapping 2d size (width, height)."""
 
     width: Decimal = 0
     height: Decimal = 0
 
-#    def __init__(self, width: DecimalUnion = 0, height: DecimalUnion = 0):
-#        self.width = self._convert(width)
-#        self.height = self._convert(height)
+    #    def __init__(self, width: DecimalUnion = 0, height: DecimalUnion = 0):
+    #        self.width = self._convert(width)
+    #        self.height = self._convert(height)
 
     @property
     def raw_tuple(self) -> tuple[int, int]:

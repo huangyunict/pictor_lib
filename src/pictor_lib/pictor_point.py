@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from src.pictor_lib.pictor_type import DecimalUnion
 
 
-@dataclass(kw_only=True, frozen=True)
+@dataclass(frozen=True)
 class PictorPoint:
     """Immutable data class wrapping 2d point (x, y)."""
 
