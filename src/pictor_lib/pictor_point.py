@@ -12,6 +12,10 @@ class PictorPoint:
     x: Decimal = 0
     y: Decimal = 0
 
+    def __post_init__(self):
+        object.__setattr__(self, 'x', self._convert(self.x))
+        object.__setattr__(self, 'y', self._convert(self.y))
+
     @property
     def raw_tuple(self) -> tuple[int, int]:
         """Convert to rounded int tuple which can be used in raw Pillow APIs."""

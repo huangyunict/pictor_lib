@@ -12,9 +12,9 @@ class PictorSize:
     width: Decimal = 0
     height: Decimal = 0
 
-    #    def __init__(self, width: DecimalUnion = 0, height: DecimalUnion = 0):
-    #        self.width = self._convert(width)
-    #        self.height = self._convert(height)
+    def __post_init__(self):
+        object.__setattr__(self, 'width', self._convert(self.width))
+        object.__setattr__(self, 'height', self._convert(self.height))
 
     @property
     def raw_tuple(self) -> tuple[int, int]:
