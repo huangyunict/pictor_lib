@@ -9,8 +9,8 @@ class PictorBox:
     """Wrap a rectangle as the top-left point and the non-negative size."""
 
     def __init__(self, point: PictorPoint, size: PictorSize):
-        self._point = point.copy()
-        self._size = size.copy()
+        self._point = point
+        self._size = size
 
     @staticmethod
     def from_points(top_left: PictorPoint,
@@ -50,56 +50,56 @@ class PictorBox:
     def top_left(self) -> PictorPoint:
         """The top left point."""
 
-        return self._point.copy()
+        return self._point
 
     @property
     def top_center(self) -> PictorPoint:
         """The top center point."""
 
-        return self._point.copy().move(self._size.width / 2, 0)
+        return self._point.move(self._size.width / 2, 0)
 
     @property
     def top_right(self) -> PictorPoint:
         """The top right point."""
 
-        return self._point.copy().move(self._size.width, 0)
+        return self._point.move(self._size.width, 0)
 
     @property
     def left_center(self) -> PictorPoint:
         """The left right point."""
 
-        return self._point.copy().move(0, self._size.height / 2)
+        return self._point.move(0, self._size.height / 2)
 
     @property
     def center(self) -> PictorPoint:
         """The center point."""
 
-        return self._point.copy().move(self._size.width / 2,
+        return self._point.move(self._size.width / 2,
                                        self._size.height / 2)
 
     @property
     def right_center(self) -> PictorPoint:
         """The right center point."""
 
-        return self._point.copy().move(self._size.width, self._size.height / 2)
+        return self._point.move(self._size.width, self._size.height / 2)
 
     @property
     def bottom_left(self) -> PictorPoint:
         """The bottom left point."""
 
-        return self._point.copy().move(0, self._size.height)
+        return self._point.move(0, self._size.height)
 
     @property
     def bottom_center(self) -> PictorPoint:
         """The bottom center point."""
 
-        return self._point.copy().move(self._size.width / 2, self._size.height)
+        return self._point.move(self._size.width / 2, self._size.height)
 
     @property
     def bottom_right(self) -> PictorPoint:
         """The bottom right point."""
 
-        return self._point.copy().move(self._size.width, self._size.height)
+        return self._point.move(self._size.width, self._size.height)
 
     @property
     def size(self) -> PictorSize:
@@ -108,7 +108,7 @@ class PictorBox:
         return self._size
 
     def copy(self) -> 'PictorBox':
-        """Create a new box instance by copying all fields."""
+        """Create a new instance by copying all fields."""
 
         return PictorBox(point=self._point.copy(), size=self._size.copy())
 
