@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from src.pictor_lib.pictor_type import DecimalUnion
 
 
-@dataclass(frozen=True)
+@dataclass(kw_only=True, frozen=True)
 class PictorPoint:
     """Immutable data class wrapping 2d point (x, y)."""
 
@@ -24,7 +24,7 @@ class PictorPoint:
         return PictorPoint(x=self.x, y=self.y)
 
     def move(self, dx: DecimalUnion, dy: DecimalUnion) -> 'PictorPoint':
-        """Return a new instance by moving by given (dx, dy) offset."""
+        """Create a new instance by moving by given (dx, dy) offset."""
 
         return PictorPoint(x=self.x + dx, y=self.y + dy)
 
