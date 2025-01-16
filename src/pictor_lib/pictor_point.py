@@ -5,25 +5,12 @@ from dataclasses import dataclass
 from src.pictor_lib.pictor_type import DecimalUnion
 
 
-@dataclass(kw_only=True)
+@dataclass(frozen=True)
 class PictorPoint:
-    """Wrap 2d point (x, y)."""
+    """Immutable data class wrapping 2d point (x, y)."""
 
-    def __init__(self, x: DecimalUnion = 0, y: DecimalUnion = 0):
-        self._x = self._convert(x)
-        self._y = self._convert(y)
-
-    @property
-    def x(self) -> Decimal:
-        """Get the x property."""
-
-        return self._x
-
-    @property
-    def y(self) -> Decimal:
-        """Get the y property."""
-
-        return self._y
+    x: Decimal = 0
+    y: Decimal = 0
 
     @property
     def raw_tuple(self) -> tuple[int, int]:
@@ -34,30 +21,26 @@ class PictorPoint:
     def copy(self) -> 'PictorPoint':
         """Create a new instance by copying all fields."""
 
-        return PictorPoint(self._x, self._y)
+        return PictorPoint(x=self.x, y=self.y)
 
     def set_x(self, x: DecimalUnion) -> 'PictorPoint':
-        """Update the x property."""
+        """Return a new instance with updated x property."""
 
-        self._x = self._convert(x)
-        return self
+        return PictorPoint(x=x, y=self.y)
 
     def set_y(self, y: DecimalUnion) -> 'PictorPoint':
-        """Set the y property."""
+        """Return a new instance with updated y property."""
 
-        self._y = self._convert(y)
-        return self
+        return PictorPoint(x=self.x, y=y)
 
     def move(self, dx: DecimalUnion, dy: DecimalUnion) -> 'PictorPoint':
-        """Move the point by given (dx, dy) offset."""
+        """Return a new instance by moving by given (dx, dy) offset."""
 
-        self._x += dx
-        self._y += dy
-        return self
+        return PictorPoint(x=self.x + dx, y=self.y + dy)
 
     @staticmethod
     def _convert(value: DecimalUnion) -> Decimal:
         return Decimal(value)
 
 
-PictorPoint.ORIGIN = PictorPoint(0, 0)
+PictorPoint.ORIGIN = PictorPoint(x=0, y=0)
