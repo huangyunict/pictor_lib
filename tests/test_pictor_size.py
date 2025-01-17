@@ -224,6 +224,36 @@ class TestPictorSize:
         assert_that(new_size.width).is_equal_to(800)
         assert_that(new_size.height).is_equal_to(800)
 
+    def test_add(self):
+        """Test for the add method."""
+
+        size_1 = PictorSize(width=800, height=600)
+        size_2 = PictorSize(width=67, height=42)
+        new_size = size_1.add(size_2)
+
+        # Verify size.
+        assert_that(size_1).is_equal_to(PictorSize(width=800, height=600))
+        assert_that(size_2).is_equal_to(PictorSize(width=67, height=42))
+        assert_that(new_size).is_not_same_as(size_1)
+        assert_that(new_size).is_not_same_as(size_2)
+        assert_that(new_size.width).is_equal_to(867)
+        assert_that(new_size.height).is_equal_to(642)
+
+    def test_subtract(self):
+        """Test for the subtract method."""
+
+        size_1 = PictorSize(width=800, height=600)
+        size_2 = PictorSize(width=67, height=42)
+        new_size = size_2.subtract(size_1)
+
+        # Verify size.
+        assert_that(size_1).is_equal_to(PictorSize(width=800, height=600))
+        assert_that(size_2).is_equal_to(PictorSize(width=67, height=42))
+        assert_that(new_size).is_not_same_as(size_1)
+        assert_that(new_size).is_not_same_as(size_2)
+        assert_that(new_size.width).is_equal_to(-733)
+        assert_that(new_size.height).is_equal_to(-558)
+
     def test_transpose(self):
         """Test for the transpose method."""
 

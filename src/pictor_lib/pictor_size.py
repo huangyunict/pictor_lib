@@ -67,6 +67,16 @@ class PictorSize:
 
         return PictorSize(width=self.height, height=self.height)
 
+    def add(self, other: 'PictorSize') -> 'PictorSize':
+        """Return a new instance by adding another size object to the current object."""
+
+        return PictorSize(self.width + other.width, self.height + other.height)
+
+    def subtract(self, other: 'PictorSize') -> 'PictorSize':
+        """Return a new instance by subtracting another size object from the current object."""
+
+        return PictorSize(self.width - other.width, self.height - other.height)
+
     def transpose(self) -> 'PictorSize':
         """Swap the width and height."""
 
