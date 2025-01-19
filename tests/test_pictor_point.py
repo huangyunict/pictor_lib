@@ -41,6 +41,16 @@ class TestPictorPoint:
         assert_that(point.y).is_equal_to(Decimal(2.71828))
         assert_that(point.raw_tuple).is_equal_to((3, 3))
 
+    def test_from_tuple_with_decimal_values(self):
+        """Test for creating a new object from tuple with decimal values."""
+
+        point = PictorPoint.from_tuple((Decimal(3.14159), Decimal(2.71828)))
+
+        # Verify point.
+        assert_that(point.x).is_equal_to(Decimal(3.14159))
+        assert_that(point.y).is_equal_to(Decimal(2.71828))
+        assert_that(point.raw_tuple).is_equal_to((3, 3))
+
     def test_copy(self):
         """Test for the copy method."""
 
