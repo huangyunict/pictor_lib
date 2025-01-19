@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pictor_lib"
-version = "0.8.1"
+version = "0.8.2"
 authors = [
   { name = "Yun Huang", email = "huangyunict@gmail.com" },
 ]
