@@ -41,6 +41,16 @@ class TestPictorSize:
         assert_that(size.height).is_equal_to(Decimal(2.71828))
         assert_that(size.raw_tuple).is_equal_to((3, 3))
 
+    def test_from_tuple_with_decimal_values(self):
+        """Test for creating a new object from tuple with decimal values."""
+
+        size = PictorSize.from_tuple((Decimal(3.14159), Decimal(2.71828)))
+
+        # Verify size.
+        assert_that(size.width).is_equal_to(Decimal(3.14159))
+        assert_that(size.height).is_equal_to(Decimal(2.71828))
+        assert_that(size.raw_tuple).is_equal_to((3, 3))
+
     def test_copy(self):
         """Test for the copy method."""
 

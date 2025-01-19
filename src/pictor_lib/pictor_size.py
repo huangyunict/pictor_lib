@@ -85,3 +85,10 @@ class PictorSize:
     @staticmethod
     def _convert(value: DecimalUnion) -> Decimal:
         return Decimal(value)
+
+    @staticmethod
+    def from_tuple(size: tuple[DecimalUnion, DecimalUnion]) -> 'PictorSize':
+        """Create a new instance from tuple."""
+
+        return PictorSize(width=PictorSize._convert(size[0]),
+                          height=PictorSize._convert(size[1]))
