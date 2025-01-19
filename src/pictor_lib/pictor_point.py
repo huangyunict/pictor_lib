@@ -40,7 +40,8 @@ class PictorPoint:
     def from_tuple(xy: tuple[DecimalUnion, DecimalUnion]) -> 'PictorPoint':
         """Create a new instance from integer tuple."""
 
-        return PictorPoint(x=PictorPoint._convert(xy[0]), y=PictorPoint._convert(xy[1]))
+        return PictorPoint(x=PictorPoint._convert(xy[0]),
+                           y=PictorPoint._convert(xy[1]))
 
 
 PictorPoint.ORIGIN = PictorPoint(x=0, y=0)
