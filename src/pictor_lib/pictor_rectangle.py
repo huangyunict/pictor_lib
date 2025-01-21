@@ -5,16 +5,36 @@ from src.pictor_lib.pictor_box import PictorBox
 from src.pictor_lib.pictor_drawable import PictorDrawable
 
 
+@dataclass
+class PictorRectangleStyle:
+    """Style parameter for rectangle."""
+
+    fill_color: str = None
+    outline_color: str = None
+    outline_width: int = 1
+
+    def copy(self) -> 'PictorRectangleStyle':
+        """Create a new instance by copying all fields."""
+
+        return PictorRectangleStyle(fill_color=self.fill_color,
+                                    outline_color=self.outline_color,
+                                    outline_width=self.outline_width)
+
+
+@dataclass
 class PictorRectangle(PictorDrawable):
     """Drawable rectangle shape."""
 
-    def __init__(self, bbox: PictorBox):
-        self._bbox = bbox
+    bbox: PictorBox
+    style: PictorRectangleStyle = PictorRectangleStyle()
 
     def draw(self, draw: ImageDraw.Draw):
-        pass
+        draw.rectangle(self.bbox.raw_tuple,
+                       fill=style.fill_color,
+                       outline=style.outline_color,
+                       width=style.outline_width)
 
     def copy(self) -> 'PictorRectangle':
         """Create a new instance by copying all fields."""
 
-        return PictorRectangle(bbox=self._bbox.copy())
+        return PictorRectangle(bbox=self.bbox.copy(), style=self.style.copy())
