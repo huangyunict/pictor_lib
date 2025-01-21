@@ -108,8 +108,14 @@ class PictorBox:
         return self._point.move(self._size.width, self._size.height)
 
     @property
+    def point(self) -> PictorSize:
+        """The point property."""
+
+        return self._point
+
+    @property
     def size(self) -> PictorSize:
-        """The size point."""
+        """The size property."""
 
         return self._size
 
