@@ -32,6 +32,15 @@ class TestPictorBox:
         assert_that(box.bottom_right).is_equal_to(PictorPoint(74, 47))
         assert_that(box.size).is_equal_to(PictorSize(7, 5))
 
+    def test_raw_tuple_with_decimal_values(self):
+        """Test for getting raw tuple with decimal values."""
+
+        size = PictorBox.from_points(top_left=PictorPoint(8.8, 6.4),
+                                     bottom_right=PictorPoint(10.8, 16.3))
+
+        # Verify size.
+        assert_that(size.raw_tuple).is_equal_to((9, 6, 11, 16))
+
     def test_from_points(self):
         """Test for from_points static method."""
 

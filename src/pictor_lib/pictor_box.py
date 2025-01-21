@@ -23,6 +23,13 @@ class PictorBox:
                        height=bottom_right.y - top_left.y))
 
     @property
+    def raw_tuple(self) -> tuple[int, int]:
+        """Convert to rounded int tuple which can be used in raw Pillow APIs."""
+
+        return round(self.top_left.x), round(self.top_left.y), round(
+            self.bottom_right.x), round(self.bottom_right.y)
+
+    @property
     def top(self) -> Decimal:
         """The y coordinate of top boundary."""
 
