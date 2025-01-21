@@ -1,5 +1,6 @@
 """Module that defines the PictorRectangle class."""
 
+from dataclasses import dataclass, field
 from PIL import ImageDraw
 from src.pictor_lib.pictor_box import PictorBox
 from src.pictor_lib.pictor_drawable import PictorDrawable
@@ -26,7 +27,7 @@ class PictorRectangle(PictorDrawable):
     """Drawable rectangle shape."""
 
     bbox: PictorBox
-    style: PictorRectangleStyle = PictorRectangleStyle()
+    style: PictorRectangleStyle = field(default_factory=PictorRectangleStyle)
 
     def draw(self, draw: ImageDraw.Draw):
         draw.rectangle(self.bbox.raw_tuple,
